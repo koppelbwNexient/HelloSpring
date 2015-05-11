@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+   <bean id="helloWorld" class="com.tutorialspoint.HelloWorld" scope="singleton" init-method="init" destroy-method="destroy">
+       <property name="message" value="Hello World!"/>
+   </bean>
+
+   <bean id="test01" class="com.tutorialspoint.HelloWorld" scope="prototype" init-method="initTest01" destroy-method="destroy">
+       <property name="test01Message" value="Bean test01 value"/>
+   </bean>
+   
+   <bean class="com.tutorialspoint.InitHelloWorld" />
+   
+   
+   
+   
+   
+   
+   
+   
+   <bean id="parentBean" class="com.tutorialspoint.HelloWorld">
+   		<property name="message1" value="parent1"/>
+   		<property name="message2" value="parent2"/>
+   </bean>
+   
+   <bean id="childBean" class="com.tutorialspoint.HelloWorld" parent="parentBean">
+   		<property name="message1" value="childOverride1"/>
+   		<property name="message3" value="child3"/>
+   </bean>
+   
+   <bean id="abstractBean" abstract="true">
+   		<property name="message1" value="template 1"/>
+      	<property name="message2" value="template 2"/>
+      	<property name="message3" value="template 3"/>
+   </bean>
+   
+   <bean id="templateUser" class="com.tutorialspoint.HelloWorld" parent="abstractBean">
+   </bean>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <bean id="triangle" class="com.tutorialspoint.Triangle">
+   		<property name="pointA" ref="zeroPoint"/>
+   		<property name="pointB">
+   			<bean class="com.tutorialspoint.Point">
+	   			<property name="x" value="-20"/>
+	   			<property name="y" value="0"/>
+  		 	</bean>
+   		</property>
+   		<property name="pointC">
+   		   	<bean class="com.tutorialspoint.Point">
+   				<property name="x" value="20"/>
+   				<property name="y" value="0"/>
+   			</bean>
+   		</property>
+   </bean>
+   
+   <bean id="zeroPoint" class="com.tutorialspoint.Point">
+   		<property name="x" value="0"/>
+   		<property name="y" value="0"/>
+   </bean>
+
+	
+	
+	
+   
+   
+   
+   
+	<bean id="square" class="com.tutorialspoint.Square">
+		<property name="points">
+			<list>
+				<ref bean="zeroPoint" />
+				<ref bean="point2" />
+				<ref bean="point3" />
+				<ref bean="point4" />
+			</list>
+		</property>
+	</bean>
+   
+   <bean id="point2" class="com.tutorialspoint.Point">
+   		<property name="x" value="20"/>
+   		<property name="y" value="0"/>
+   </bean>
+   
+   <bean id="point3" class="com.tutorialspoint.Point">
+   		<property name="x" value="20"/>
+   		<property name="y" value="20"/>
+   </bean>
+   
+   <bean id="point4" class="com.tutorialspoint.Point">
+   		<property name="x" value="0"/>
+   		<property name="y" value="20"/>
+   </bean>
+   
+   
+   
+   
+   
+   
+   
+   
+   <bean id="autoWiredTriangle" class="com.tutorialspoint.AutoWiredTriangle" autowire="byName">
+   </bean>
+   
+   <bean id="pointA" class="com.tutorialspoint.Point">
+   		<property name="x" value="20"/>
+   		<property name="y" value="10"/>
+   </bean>
+   
+   <bean id="pointB" class="com.tutorialspoint.Point">
+   		<property name="x" value="0"/>
+   		<property name="y" value="10"/>
+   </bean>
+   
+   <bean id="pointC" class="com.tutorialspoint.Point">
+   		<property name="x" value="10"/>
+   		<property name="y" value="40"/>
+   </bean>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+</beans>
